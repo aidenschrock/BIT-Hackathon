@@ -1,26 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Account from "./pages/account";
-import Page404 from "./pages/page404";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Account from './pages/account'
+import About from './pages/about'
+import Page404 from './pages/page404'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/BIT-Hackathon/" element={<App />} />
-        <Route path="/BIT-Hackathon/account" element={<Account />} />
-        <Route path="*" element={<Page404 />} />
+        <Route path='/BIT-Hackathon/' element={<App />} />
+        <Route path='/BIT-Hackathon/account' element={<Account />} />
+        <Route path='/BIT-Hackathon/about' element={<About />} />
+        <Route path='*' element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
