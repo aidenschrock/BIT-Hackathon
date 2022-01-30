@@ -5,9 +5,10 @@ import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { formatDate } from '@fullcalendar/core'
 import listPlugin from '@fullcalendar/list'
-import { INITIAL_EVENTS, createEventId } from '../components/event-utils'
+import { createEventId, allEvents } from '../components/event-utils'
 import { db } from '../firebase'
 import moment from 'moment'
+import { doc, deleteDoc } from "firebase/firestore"
 
 export default class Calendar extends Component {
 
@@ -39,7 +40,7 @@ export default class Calendar extends Component {
               selectMirror={true}
               dayMaxEvents={true}
               weekends={this.state.weekendsVisible}
-              initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+              eventSources={allEvents} // alternatively, use the `events` setting to fetch from a feed
               select={this.handleDateSelect}
               eventDrop={this.handleEventDrop}
               eventContent={renderEventContent} // custom render function
@@ -47,8 +48,10 @@ export default class Calendar extends Component {
               eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
               /* you can update a remote database when these fire:
               eventAdd={function(){}}
-              eventChange={function(){}}
-              eventRemove={function(){}}*/
+              eventChange={function(){}}*/
+              // eventRemove={function(){
+
+              // }
             />
           </div>
         </div>
@@ -116,8 +119,11 @@ export default class Calendar extends Component {
     }
   
     handleEventClick = (clickInfo) => {
+      console.log(clickInfo.event.id)
       if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
         clickInfo.event.remove()
+        deleteDoc(doc(db, "calendar/Eik9e9CTCTBcwrbWzltP/events", clickInfo.event.id));
+        
       }
     }
   
@@ -144,7 +150,7 @@ export default class Calendar extends Component {
       console.log(eventInfo),
       <>
         <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i><p>{eventInfo.event.extendedProps.fun}</p>
+        <i>{eventInfo.event.title}</i><p>{eventInfo.event.extendedProps.description}</p>
       </>
       
     )
