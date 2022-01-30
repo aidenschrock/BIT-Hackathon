@@ -11,8 +11,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="roommate/" element={<App />} />
-        <Route path="roommate/account" element={<Account />} />
+        <Route path="/BIT-Hackathon/" element={<App />} />
+        <Route path="/BIT-Hackathon/account" element={<Account />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

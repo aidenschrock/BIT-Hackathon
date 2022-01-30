@@ -14,7 +14,7 @@ function Page404() {
       />
       <Typography variant="h5">
         Go Back{" "}
-        <Link style={style.link} to="/roommate">
+        <Link style={style.link} to="/BIT-Hackathon">
           Home
         </Link>
       </Typography>

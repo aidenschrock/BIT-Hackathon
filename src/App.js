@@ -6,7 +6,7 @@ function App() {
   let navigate = useNavigate();
 
   const enterApp = () => {
-    navigate("/roommate/login");
+    navigate("/BIT-Hackathon/login");
   };
 
   const style = {
