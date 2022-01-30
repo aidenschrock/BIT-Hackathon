@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/roommate/static/css/main.e6c13ad2.css",
-    "main.js": "/roommate/static/js/main.ba75b1d2.js",
+    "main.js": "/roommate/static/js/main.73619100.js",
     "static/js/787.0ff77c41.chunk.js": "/roommate/static/js/787.0ff77c41.chunk.js",
+    "static/media/page404Image.svg": "/roommate/static/media/page404Image.6ff045c5664e0cf7804db53b10133303.svg",
     "static/media/homescreenImage.svg": "/roommate/static/media/homescreenImage.2c3a626e679713e521ddff7371d6fcdf.svg",
     "index.html": "/roommate/index.html",
     "main.e6c13ad2.css.map": "/roommate/static/css/main.e6c13ad2.css.map",
-    "main.ba75b1d2.js.map": "/roommate/static/js/main.ba75b1d2.js.map",
+    "main.73619100.js.map": "/roommate/static/js/main.73619100.js.map",
     "787.0ff77c41.chunk.js.map": "/roommate/static/js/787.0ff77c41.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ba75b1d2.js"
+    "static/js/main.73619100.js"
   ]
 }
