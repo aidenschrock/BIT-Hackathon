@@ -94,4 +94,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  db
 };

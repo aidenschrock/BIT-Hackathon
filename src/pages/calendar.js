@@ -5,9 +5,13 @@ import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { formatDate } from '@fullcalendar/core'
 import listPlugin from '@fullcalendar/list'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
+import { INITIAL_EVENTS, createEventId } from '../components/event-utils'
+import { db } from '../firebase'
+import moment from 'moment'
 
 export default class Calendar extends Component {
+
+ 
 
     state = {
       weekendsVisible: true,
@@ -17,6 +21,9 @@ export default class Calendar extends Component {
     render() {
       return (
         <div className='demo-app'>
+          
+    
+  
           {this.renderSidebar()}
           <div className='demo-app-main'>
             <FullCalendar
@@ -34,7 +41,7 @@ export default class Calendar extends Component {
               weekends={this.state.weekendsVisible}
               initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
               select={this.handleDateSelect}
-              
+              eventDrop={this.handleEventDrop}
               eventContent={renderEventContent} // custom render function
               eventClick={this.handleEventClick}
               eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
@@ -52,6 +59,11 @@ export default class Calendar extends Component {
     renderSidebar() {
       return (
         <div className='demo-app-sidebar'>
+          <div>
+            <form>
+              <input placeholder="name" />
+            </form>
+          </div>
           <div className='demo-app-sidebar-section'>
             <h2>Instructions</h2>
             <ul>
@@ -115,9 +127,19 @@ export default class Calendar extends Component {
       })
     }
   
-  }
   
-  function renderEventContent(eventInfo) {
+  
+  handleEventDrop = (arg) => {
+    var start = moment(arg.event.start).local().format()
+    var end = moment(arg.event.end).local().format()
+
+    db.collection("data").add({
+      start: start,
+      end: end
+  })
+  }
+}
+ function renderEventContent(eventInfo) {
     return (
       console.log(eventInfo),
       <>
