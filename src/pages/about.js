@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
-import Images from '../images/story-roomate.jpg'
+import images from '../assets/images/story-roomate.jpg'
 
 function About() {
   return (
@@ -18,11 +18,7 @@ function About() {
           <li>Aiden</li>
           <li>Joe</li>
         </ul>
-        <img
-          style={style.image}
-          src={Image}
-          alt='man exiting portal spooks alien'
-        />
+        <img style={style.image} src={images} alt='Potrait of roommates' />
       </section>
     </div>
   )
