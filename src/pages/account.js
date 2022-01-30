@@ -21,6 +21,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Header from "../components/header";
+import { updateUserEmail } from "../firebase";
 
 function Account() {
   const [editEmail, setEditEmail] = useState(false);
@@ -37,7 +38,6 @@ function Account() {
     confirmNewPassword: "",
     showConfirmNewPassword: false,
   });
-
   const validationSchema = Yup.object().shape({
     currentPassword: Yup.string().required("Password is required"),
     newPassword: Yup.string()
@@ -51,6 +51,12 @@ function Account() {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
+  const updateEmail = () => {
+    updateUserEmail(userEmail);
+    handleEditEmailClick();
+  };
+
   const {
     register,
     handleSubmit,
@@ -115,12 +121,6 @@ function Account() {
 
   const handleEditEmailClick = () => {
     setEditEmail((curr) => !curr);
-    setValues({
-      ...values,
-      currentPassword: "",
-      newPassword: "",
-      confirmNewPassword: "",
-    });
   };
 
   const handleEmailChange = (event) => {
@@ -128,6 +128,12 @@ function Account() {
   };
   const handlePasswordDialog = () => {
     setpasswordDialogOpen((curr) => !curr);
+    setValues({
+      ...values,
+      currentPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
+    });
   };
 
   const handleSaveEditPassword = () => {
@@ -160,7 +166,7 @@ function Account() {
                 />
                 <IconButton
                   aria-label="save email edit"
-                  onClick={handleEditEmailClick}
+                  onClick={updateEmail}
                   sx={{ marginLeft: "15%" }}
                 >
                   <CheckIcon color="primary" />

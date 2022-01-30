@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  updateEmail,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -16,12 +17,11 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID 
-}
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
@@ -57,6 +57,17 @@ const sendPasswordReset = async (email) => {
     alert(err.message);
   }
 };
+
+const updateUserEmail = async (email) => {
+  console.log(auth.currentUser);
+  try {
+    await updateEmail(auth.currentUser.uid, email);
+    alert("Email updated!");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 const logout = () => {
   signOut(auth);
 };
@@ -67,4 +78,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  updateUserEmail,
 };
