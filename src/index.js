@@ -5,13 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Account from "./pages/account";
+import Page404 from "./pages/page404";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="roommate/" element={<App />} />
-        <Route path="roommate/account" element={<Account />} />
+        <Route path="/" element={<App />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
