@@ -1,7 +1,7 @@
 {
-  "name": "bit-hackathon",
+  "name": "roommate",
   "version": "0.1.0",
-  "homepage": "https://aidenschrock.me/BIT-Hackathon",
+  "homepage": "https://aidenschrock.me/roommate",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
