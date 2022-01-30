@@ -20,6 +20,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Header from "../components/header";
 
 function Account() {
   const [editEmail, setEditEmail] = useState(false);
@@ -135,6 +136,7 @@ function Account() {
 
   return (
     <div style={style.container}>
+      <Header />
       <h1>Account Settings</h1>
       <div style={style.content}>
         <div style={style.contentColumns}>
@@ -159,7 +161,7 @@ function Account() {
                 <IconButton
                   aria-label="save email edit"
                   onClick={handleEditEmailClick}
-                  sx={{ marginLeft: "5em" }}
+                  sx={{ marginLeft: "15%" }}
                 >
                   <CheckIcon color="primary" />
                 </IconButton>
@@ -172,7 +174,7 @@ function Account() {
                   <IconButton
                     aria-label="edit email"
                     onClick={handleEditEmailClick}
-                    sx={{ marginLeft: "5em" }}
+                    sx={{ marginLeft: "15%" }}
                   >
                     <EditIcon color="primary" />
                   </IconButton>
