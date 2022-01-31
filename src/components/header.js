@@ -71,12 +71,13 @@ function Header() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex" } }}
           >
-            <Link style={style.logo} to="/roommate">
+            <Link style={style.logo} to="/">
               Roommate
             </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
+            <Typography variant="body1">About</Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar {...stringAvatar("Aiden Schrock")} />
@@ -98,7 +99,7 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link style={style.link} to="/roommate/account">
+              <Link style={style.link} to="/account">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Account</Typography>
                 </MenuItem>
