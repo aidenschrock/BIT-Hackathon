@@ -1,6 +1,6 @@
 import homescreenImage from "./homescreenImage.svg";
 import { Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function App() {
@@ -31,6 +31,10 @@ function App() {
       width: "40%",
       padding: "5%",
     },
+    aboutLink: {
+      textDecoration: "none",
+      marginTop: "3%",
+    },
   };
   return (
     <div style={style.container}>
@@ -43,6 +47,14 @@ function App() {
         <Button onClick={enterApp} style={style.button} variant="contained">
           Get Started
         </Button>
+        <Typography style={style.aboutLink}>
+          <Link
+            style={{ textDecoration: "none", fontSize: "1.2em" }}
+            to="/about"
+          >
+            About
+          </Link>
+        </Typography>
       </div>
       <img
         style={style.image}
