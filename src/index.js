@@ -21,7 +21,7 @@ ReactDOM.render(
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/account" element={<Account />} />
-        <Route exact path="/calendar" element={<Calendar />} />
+        <Route exact path="/dashboard" element={<Calendar />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
