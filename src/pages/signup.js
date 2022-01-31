@@ -7,7 +7,6 @@ import {
   TextField,
   Button,
   InputAdornment,
-  Checkbox,
   IconButton,
   Snackbar,
   Alert,
@@ -27,21 +26,11 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState({
-    emailError: "",
-    passwordError: "",
-  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const [disabled, setDisabled] = useState(true);
-  const [checked, setChecked] = useState(true);
-
   let navigate = useNavigate();
-
-  const handleCheckedChange = (event) => {
-    setChecked(event.target.checked);
-  };
 
   const closeAlert = () => {
     setAlertOpen(false);
