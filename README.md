@@ -5,8 +5,11 @@ This projeect was drawn from data collected on problems people face living in sh
 ## Team
 
 Morgan | GitHub: [@m-sherrill](https://github.com/m-sherrill)
+
 Meera | GitHub: [@meera-ramesh19](https://github.com/meera-ramesh19)
+
 Aiden | GitHub: [@aidenschrock](https://github.com/aidenschrock)
+
 Joe | GitHub: [@JosephAni](https://github.com/JosephAni)
 
 ## Incentive/Punishment System
