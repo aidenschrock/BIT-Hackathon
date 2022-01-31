@@ -2,6 +2,7 @@ import homescreenImage from "./homescreenImage.svg";
 import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+
 function App() {
   let navigate = useNavigate();
 

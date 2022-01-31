@@ -16,8 +16,8 @@ import {
   getDocs,
   collection,
   where,
-  addDoc
-} from "firebase/firestore"
+  addDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -38,7 +38,10 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
-    const queryUsers = query(collection(db, "users"), where("uid", "==", user.uid));
+    const queryUsers = query(
+      collection(db, "users"),
+      where("uid", "==", user.uid)
+    );
     const docs = await getDocs(queryUsers);
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), {
@@ -47,8 +50,8 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
       });
-  } 
-} catch (err) {
+    }
+  } catch (err) {
     console.error(err);
     alert(err.message);
   }
@@ -106,5 +109,6 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  db,
   updateUserEmail,
 };
