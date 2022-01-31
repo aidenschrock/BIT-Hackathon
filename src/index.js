@@ -6,13 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Account from "./pages/account";
 import Page404 from "./pages/page404";
+import Calendar from "./pages/calendar"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/BIT-Hackathon/" element={<App />} />
-        <Route path="/BIT-Hackathon/account" element={<Account />} />
+        <Route path="/" element={<App />} />
+        <Route path="/account" element={<Account />} />
+        <Route exact path="/calendar" element={<Calendar />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

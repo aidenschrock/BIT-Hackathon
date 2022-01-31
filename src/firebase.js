@@ -9,6 +9,15 @@ import {
   signOut,
 } from "firebase/auth";
 
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc
+} from "firebase/firestore"
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -21,13 +30,24 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
-    await signInWithPopup(auth, googleProvider);
-  } catch (err) {
+    const res = await signInWithPopup(auth, googleProvider);
+    const user = res.user;
+    const queryUsers = query(collection(db, "users"), where("uid", "==", user.uid));
+    const docs = await getDocs(queryUsers);
+    if (docs.docs.length === 0) {
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: user.displayName,
+        authProvider: "google",
+        email: user.email,
+      });
+  } 
+} catch (err) {
     console.error(err);
     alert(err.message);
   }
@@ -42,7 +62,14 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      name,
+      authProvider: "local",
+      email,
+    });
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -67,4 +94,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  db
 };
