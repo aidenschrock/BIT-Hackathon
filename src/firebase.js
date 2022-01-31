@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  updateEmail,
 } from "firebase/auth";
 
 import {
@@ -31,7 +32,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
@@ -85,6 +85,17 @@ const sendPasswordReset = async (email) => {
     throw err;
   }
 };
+
+const updateUserEmail = async (email) => {
+  console.log(auth.currentUser);
+  try {
+    await updateEmail(auth.currentUser.uid, email);
+    alert("Email updated!");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 const logout = () => {
   signOut(auth);
 };
@@ -95,4 +106,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  updateUserEmail,
 };

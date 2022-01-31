@@ -75,9 +75,12 @@ function Header() {
               Roommate
             </Link>
           </Typography>
-
+          <Typography sx={{ marginRight: "2%" }} variant="body1">
+            <Link style={style.logo} to="/about">
+              About
+            </Link>
+          </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            <Typography variant="body1">About</Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar {...stringAvatar("Aiden Schrock")} />
