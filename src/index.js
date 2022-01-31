@@ -14,7 +14,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/account" element={<Account />} />
-        <Route exact path="/calendar" element={<Calendar />} />
+        <Route exact path="/dashboard" element={<Calendar />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

@@ -10,10 +10,16 @@ import { db } from '../firebase'
 import moment from 'moment'
 import { doc, deleteDoc } from "firebase/firestore"
 
+
+
 export default class Calendar extends Component {
-
- 
-
+  constructor(props) {
+    super(props)
+  this.title = React.createRef() 
+  this.description = React.createRef()
+  this.assignedto = React.createRef()
+  this.date = React.createRef()
+  }
     state = {
       weekendsVisible: true,
       currentEvents: []
@@ -60,11 +66,16 @@ export default class Calendar extends Component {
 
   
     renderSidebar() {
+      
       return (
         <div className='demo-app-sidebar'>
           <div>
             <form>
-              <input placeholder="name" />
+              <input placeholder="Chore Title" ref={this.title}/><br/><br/>
+              <input placeholder="Chore Description" ref={this.description}/><br/><br/>
+              <input placeholder="Person it should be assigned to" ref={this.assignedto}/><br/><br/>
+              <input type="date" min="2022-01-01" max="2030-12-31" ref={this.date}></input><br/><br/>
+              <button type="submit" onClick={addEvent}>Add Event</button>
             </form>
           </div>
           <div className='demo-app-sidebar-section'>
@@ -95,6 +106,8 @@ export default class Calendar extends Component {
       )
     }
   
+    
+
     handleWeekendsToggle = () => {
       this.setState({
         weekendsVisible: !this.state.weekendsVisible
@@ -144,7 +157,17 @@ export default class Calendar extends Component {
       end: end
   })
   }
+
+  
 }
+
+function addEvent(event) {
+  
+  event.preventDefault()
+  console.log(event)
+}
+
+
  function renderEventContent(eventInfo) {
     return (
       console.log(eventInfo),
