@@ -9,6 +9,7 @@ import Page404 from "./pages/page404";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import ForgotPassword from "./pages/forgotPassword";
+import About from "./pages/about";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/account" element={<Account />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
