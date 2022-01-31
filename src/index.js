@@ -6,13 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Account from "./pages/account";
 import Page404 from "./pages/page404";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import ForgotPassword from "./pages/forgotPassword";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
