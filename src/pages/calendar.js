@@ -1,68 +1,61 @@
-import React, { Component } from 'react'
-import FullCalendar from '@fullcalendar/react' // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import { formatDate } from '@fullcalendar/core'
-import listPlugin from '@fullcalendar/list'
-import { createEventId, allEvents } from '../components/event-utils'
-import { db } from '../firebase'
-import moment from 'moment'
-import { doc, deleteDoc } from "firebase/firestore"
-
-
+import React, { Component } from "react";
+import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import { formatDate } from "@fullcalendar/core";
+import listPlugin from "@fullcalendar/list";
+import { createEventId, allEvents } from "../components/event-utils";
+import { db } from "../firebase";
+import moment from "moment";
+import { doc, deleteDoc } from "firebase/firestore";
 
 export default class Calendar extends Component {
-  constructor(props) {
-    super(props)
-  this.title = React.createRef() 
-  this.description = React.createRef()
-  this.assignedto = React.createRef()
-  this.date = React.createRef()
-  }
-    state = {
-      weekendsVisible: true,
-      currentEvents: []
-    }
-  
-    render() {
-      return (
-        <div className='demo-app'>
-          
-    
-  
-          {this.renderSidebar()}
-          <div className='demo-app-main'>
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
-              headerToolbar={{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-              }}
-              initialView='dayGridMonth'
-              editable={true}
-              selectable={true}
-              selectMirror={true}
-              dayMaxEvents={true}
-              weekends={this.state.weekendsVisible}
-              eventSources={allEvents} // alternatively, use the `events` setting to fetch from a feed
-              select={this.handleDateSelect}
-              eventDrop={this.handleEventDrop}
-              eventContent={renderEventContent} // custom render function
-              eventClick={this.handleEventClick}
-              eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
-              /* you can update a remote database when these fire:
+  state = {
+    weekendsVisible: true,
+    currentEvents: [],
+  };
+
+  render() {
+    return (
+      <div className="demo-app">
+        {this.renderSidebar()}
+        <div className="demo-app-main">
+          <FullCalendar
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            }}
+            initialView="dayGridMonth"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            weekends={this.state.weekendsVisible}
+            eventSources={allEvents} // alternatively, use the `events` setting to fetch from a feed
+            select={this.handleDateSelect}
+            eventDrop={this.handleEventDrop}
+            eventContent={renderEventContent} // custom render function
+            eventClick={this.handleEventClick}
+            eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            /* you can update a remote database when these fire:
               eventAdd={function(){}}
               eventChange={function(){}}*/
-              // eventRemove={function(){
+            // eventRemove={function(){
 
-              // }
-            />
-          </div>
+            // }
+          />
         </div>
-      )
-    }
+      </div>
+    );
+  }
 
   
     renderSidebar() {
@@ -139,18 +132,31 @@ export default class Calendar extends Component {
         
       }
     }
-  
-    handleEvents = (events) => {
-      this.setState({
-        currentEvents: events
-      })
+  };
+
+  handleEventClick = (clickInfo) => {
+    console.log(clickInfo.event.id);
+    if (
+      window.confirm(
+        `Are you sure you want to delete the event '${clickInfo.event.title}'`
+      )
+    ) {
+      clickInfo.event.remove();
+      deleteDoc(
+        doc(db, "calendar/Eik9e9CTCTBcwrbWzltP/events", clickInfo.event.id)
+      );
     }
-  
-  
-  
+  };
+
+  handleEvents = (events) => {
+    this.setState({
+      currentEvents: events,
+    });
+  };
+
   handleEventDrop = (arg) => {
-    var start = moment(arg.event.start).local().format()
-    var end = moment(arg.event.end).local().format()
+    var start = moment(arg.event.start).local().format();
+    var end = moment(arg.event.end).local().format();
 
     db.collection("data").add({
       start: start,
@@ -173,17 +179,25 @@ function addEvent(event) {
       console.log(eventInfo),
       <>
         <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i><p>{eventInfo.event.extendedProps.description}</p>
+        <i>{eventInfo.event.title}</i>
+        <p>{eventInfo.event.extendedProps.description}</p>
       </>
-      
     )
-  }
-  
-  function renderSidebarEvent(event) {
-    return (
-      <li key={event.id}>
-        <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
-        <i>{event.title}</i><b>{event.extendedProps.description}</b>
-      </li>
-    )
-  }
+  );
+}
+
+function renderSidebarEvent(event) {
+  return (
+    <li key={event.id}>
+      <b>
+        {formatDate(event.start, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </b>
+      <i>{event.title}</i>
+      <b>{event.extendedProps.description}</b>
+    </li>
+  );
+}

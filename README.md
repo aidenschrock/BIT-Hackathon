@@ -1,3 +1,27 @@
+# Roommate
+
+This projeect was drawn from data collected on problems people face living in shared spaces.
+
+## Team
+
+Morgan | GitHub: [@m-sherrill](https://github.com/m-sherrill)
+
+Meera | GitHub: [@meera-ramesh19](https://github.com/meera-ramesh19)
+
+Aiden | GitHub: [@aidenschrock](https://github.com/aidenschrock)
+
+Joe | GitHub: [@JosephAni](https://github.com/JosephAni)
+
+## Incentive/Punishment System
+
+Roommate is an app where all roommates can choose their chores to do on any given day. Our idea to penalize roommates could not be implemented within the deadline  
+
+1. Buy dinner/drinks on Friday for all the roommates in the house
+2. Pay house cleaning service to do everybody's chore for the upcoming week
+3. Pay your roommates triple for the cost of the chores and their time when compelled to do someone’s chores.
+4. Piggybank where you lose your share who would not comply to do their chore. Roommates decide on splitting/spending the amount
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
